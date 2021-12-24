@@ -36,13 +36,25 @@ with open('liturgia.ja') as input_file:
                 #print(line)
                 temp = line.split('=')
                 #temp = {temp[0]:temp[1]}
-                print(temp)
+                #print(temp)
                 tempitens[temp[0]] = temp[1].rstrip('\n')
-print(itens)
-print(itens["item_anot"]["tipo"])
-print(len(geral["1"]))
+    itens[item] = tempitens
+#print(itens)
+#print(itens["item_anot"]["tipo"])
+#print(len(geral["1"]))
+print(geral)
 
-for i in range(1,7):
-    for x in range(len(geral["1"])):
-        print(itens[geral["1"]])
+for i in range(1,8):
+    print("\nDia da semana: "+str(i))
+    try:
+        for x in geral[str(i)]:
+            #print(itens[x]["item"])
+            if itens[x]["tipo"] == "categoria":
+                print("\n*" + itens[x]["item"].upper() + "*")
+            else:
+                print("- " + itens[x]["item"])
+                if itens[x]["tipo"] == "musica":
+                    print(itens[x]["subitem"])
             
+    except:
+        pass
