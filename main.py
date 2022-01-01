@@ -16,6 +16,15 @@ itens = {}
 geral = {}
 tempitens = {}
 item = "a"
+
+def trataArquivo(diretorio):
+    splitado = diretorio.split('\\')
+    exten = splitado.pop().split(".")
+    print(diretorio)
+    print(splitado)
+    tratado = splitado.pop()[:40]# + "..." + exten.pop()
+    return(tratado)
+
 #dicionario = {"teste":{"testedici":"testecerto"}}
 #print(dicionario["teste"]["testedici"])
 with open(os.getenv('APPDATA') + "\LouvorJA\liturgia.ja") as input_file:
@@ -35,7 +44,7 @@ with open(os.getenv('APPDATA') + "\LouvorJA\liturgia.ja") as input_file:
                 temp = line.split('=')
                 tempitens[temp[0]] = temp[1].rstrip('\n')
     itens[item] = tempitens
-print(geral)
+print(itens)
 
 for i in range(1,8):
     print("\nDia da semana: "+str(i))
@@ -46,8 +55,16 @@ for i in range(1,8):
                 print("\n*" + itens[x]["item"].upper() + "*")
             else:
                 print("- " + itens[x]["item"])
-                if itens[x]["tipo"] == "musica":
+                if itens[x]["tipo"] == "musica":        #Música
                     print("  _"+ itens[x]["subitem"]+ "_")
+                elif itens[x]["tipo"] == "anotacao":    #Anotação
+                    if itens[x]["subitem"] != "":
+                        print("  _"+ itens[x]["subitem"]+ "_")
+                elif itens[x]["tipo"] == "arquivo":     #Arquivo
+                    if itens[x]["dir"] != "":
+                        print("  _Arquivo "+ trataArquivo(itens[x]["dir"]) + "_")
+                    else:
+                        print("  *_Arquivo não selecionado_*")
             
     except:
         pass
