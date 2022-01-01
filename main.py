@@ -10,13 +10,15 @@ musica = numero musica
 subitem = Nome item
 url = URL
 '''
+import os
+
 itens = {}
 geral = {}
 tempitens = {}
 item = "a"
 #dicionario = {"teste":{"testedici":"testecerto"}}
 #print(dicionario["teste"]["testedici"])
-with open('liturgia.ja') as input_file:
+with open(os.getenv('APPDATA') + "\LouvorJA\liturgia.ja") as input_file:
     for line in input_file:
         if line != "\n":
             if line[0] == "[":
@@ -26,22 +28,13 @@ with open('liturgia.ja') as input_file:
                 nomeitem = nomeitem.replace("[","")
                 nomeitem = nomeitem.replace("]","")
                 item = nomeitem.rstrip('\n')
-                #print("primeira linha")
             elif item[0] == "G":
                 temp = line.split('=')
-                #print(temp)
                 geral[temp[0]] = temp[1].split(';')
-                #print(geral)
             else:
-                #print(line)
                 temp = line.split('=')
-                #temp = {temp[0]:temp[1]}
-                #print(temp)
                 tempitens[temp[0]] = temp[1].rstrip('\n')
     itens[item] = tempitens
-#print(itens)
-#print(itens["item_anot"]["tipo"])
-#print(len(geral["1"]))
 print(geral)
 
 for i in range(1,8):
@@ -54,7 +47,7 @@ for i in range(1,8):
             else:
                 print("- " + itens[x]["item"])
                 if itens[x]["tipo"] == "musica":
-                    print(itens[x]["subitem"])
+                    print("  _"+ itens[x]["subitem"]+ "_")
             
     except:
         pass
