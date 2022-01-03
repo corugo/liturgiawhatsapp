@@ -19,10 +19,8 @@ item = "a"
 
 def trataArquivo(diretorio):
     splitado = diretorio.split('\\')
-    exten = splitado.pop().split(".")
-    print(diretorio)
-    print(splitado)
-    tratado = splitado.pop()[:40]# + "..." + exten.pop()
+    exten = splitado.pop()
+    tratado = exten[:30]# + "..." + exten.pop()
     return(tratado)
 
 #dicionario = {"teste":{"testedici":"testecerto"}}
@@ -56,7 +54,10 @@ for i in range(1,8):
             else:
                 print("- " + itens[x]["item"])
                 if itens[x]["tipo"] == "musica":        #Música
-                    print("  _"+ itens[x]["subitem"]+ "_")
+                    if itens[x]["subitem"] == "Clique para escolher a música":
+                        print("  *_Música não selecionada_*")
+                    else:
+                        print("  _"+ itens[x]["subitem"]+ "_")
                 elif itens[x]["tipo"] == "anotacao":    #Anotação
                     if itens[x]["subitem"] != "":
                         print("  _"+ itens[x]["subitem"]+ "_")
