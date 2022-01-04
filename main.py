@@ -12,6 +12,7 @@ url = URL
 '''
 import os
 
+semana = {1:'Domingo', 2:'Segunda-Feira', 3:'Terça-Feira', 4:'Quarta-Feira', 5:'Quinta-Feira', 6:'Sexta-Feira', 7:'Sábado'}
 itens = {}
 geral = {}
 tempitens = {}
@@ -45,7 +46,7 @@ with open(os.getenv('APPDATA') + "\LouvorJA\liturgia.ja") as input_file:
 print(itens)
 
 for i in range(1,8):
-    print("\nDia da semana: "+str(i))
+    print("\nDia da semana: "+semana[i])
     try:
         for x in geral[str(i)]:
             #print(itens[x]["item"])
