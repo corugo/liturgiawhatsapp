@@ -12,7 +12,7 @@ url = URL
 '''
 import os
 import pprint
-from PyQt5.QtWidgets import QApplication, QLabel
+#from PyQt5.QtWidgets import QApplication, QLabel
 
 semana = {1:'Domingo', 2:'Segunda-Feira', 3:'Terça-Feira', 4:'Quarta-Feira', 5:'Quinta-Feira', 6:'Sexta-Feira', 7:'Sábado'}
 itens = {}
@@ -23,7 +23,7 @@ item = ""
 def trataArquivo(diretorio):
     splitado = diretorio.split('\\')
     exten = splitado.pop()
-    tratado = exten[:30]# + "..." + exten.pop()
+    tratado = exten[:30]
     return(tratado)
 
 #dicionario = {"teste":{"testedici":"testecerto"}}
@@ -53,6 +53,9 @@ pprint.pprint(geral)
 
 for i in geral:
     print("\nDia da semana: "+semana[int(i)])
+    if geral[str(i)] == ['']:   #Se for um dia vazio
+        print("Dia vazio")
+        continue
     for x in geral[str(i)]:
         #print(itens[x]["item"])
         if itens[x]["tipo"] == "categoria":         #Categoria
