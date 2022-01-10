@@ -93,10 +93,10 @@ for i in geral:
     #tcolor(itens[x]["cor"])
     
     
+    draw.text((230, 0),semana[int(i)],(255,255,255),font=font2)
     
-    
-    print(offset+tamanhofonte)
-    print(tamanhofonte)
+    #print(offset+tamanhofonte)
+    #print(tamanhofonte)
     for x in geral[str(i)]:
         print(itens[x]["item"])
         print(tcolor(itens[x]["cor"]))
